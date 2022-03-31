@@ -8,7 +8,7 @@ import { UserDto } from './user/user.dto';
 import { MatchHistory } from './match_history/match_history.entity'
 
 @Controller()
-@ApiTags('냐옹')
+@ApiTags('멍멍')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
