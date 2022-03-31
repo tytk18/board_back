@@ -16,7 +16,11 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('보드게임 점수판')
     .setDescription('')
+<<<<<<< HEAD
     .setVersion('1.1212')
+=======
+    .setVersion('1.1d adsjdaos')
+>>>>>>> develop
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
