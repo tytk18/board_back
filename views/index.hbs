@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+  </head>
+  <body>
+      <h1>Hello!</h1>
+      <img src="/dumb_bird.png"/>
+    {{ users }}
+
+    {{#each users}}
+        <div style="background: #ff0000; margin: 10px; padding: 20px">
+            {{this}}
+        </div>
+    {{/each}}
+  </body>
+</html>
