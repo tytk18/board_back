@@ -2,28 +2,24 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Cat } from './cat/cat.entity';
-import { Game } from './game/game.entity';
 import { LoggerMiddleware } from './logger.middleware';
-import { User } from './user/user.entity';
-import { MatchHistory  } from './match_history/match_history.entity';
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
 import { UserModule } from './user/user.module';
+import { MatchHistoryModule } from './match_history/match_history.module';
+import { GameModule } from './game/game.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
-    TypeOrmModule.forFeature([Cat, Game, MatchHistory, User]),
-    UserModule
+    TypeOrmModule.forFeature(),
+    UserModule,
+    MatchHistoryModule,
+    GameModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes('add');
+    consumer.apply(LoggerMiddleware).forRoutes('add');
   }
 }

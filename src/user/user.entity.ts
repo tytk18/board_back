@@ -1,22 +1,29 @@
+import { Exclude } from 'class-transformer';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { MatchHistory } from '../match_history/match_history.entity'
+import { MatchHistory } from '../match_history/match_history.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  uuid: string;
 
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
-  @OneToMany(()=> MatchHistory, match_history=>match_history.player)
+  @Exclude()
+  @Column()
+  encryptedPassword: string;
+
+  @Exclude()
+  @Column()
+  cryptoSalt: string;
+
+  @OneToMany(() => MatchHistory, (match_history) => match_history.player)
   history: History[];
 
-  // @OneToMany(()=> History, history=>history.partner)
-  // partnerhistory: History[];
-//   @OneToMany(() => Cat, cat => cat.user)
-//   cats: Cat[];
+  @Column()
+  isAdmin: boolean;
 }

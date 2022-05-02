@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
-import { Cat } from '../cat/cat.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { MatchHistory } from '../match_history/match_history.entity';
 
 @Entity()
@@ -10,9 +9,12 @@ export class Game {
   @Column()
   name: string;
 
-  @OneToMany(()=>MatchHistory, match_history => match_history.game)
-  history: History[];
+  @Column()
+  explanation: string;
 
-//   @OneToMany(() => Cat, cat => cat.user)
-//   cats: Cat[];
+  @Column()
+  imageUrl: string;
+
+  @OneToMany(() => MatchHistory, (match_history) => match_history.game)
+  history: History[];
 }

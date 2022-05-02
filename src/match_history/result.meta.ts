@@ -1,4 +1,4 @@
 export enum GameResult {
-    win = '승',
-    lose = '패'
+  win = '승',
+  lose = '패',
 }
